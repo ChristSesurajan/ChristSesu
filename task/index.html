@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>API calls</title>
+    <meta name="author" content="Christ Rimmon Flavin Sesurajan">
+    <meta name="description" content="Ajax Call">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="favicon.ico" rel="icon">
+    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/libs/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header"></div>
+    <div class="main">
+        <table id="tabledata" class="container-fluid">
+            <tr class="row">
+                <th class="col-4">API name</th>
+                <th class="col-4">API description</th>
+                <th class="col-4">Submit</th>
+            </tr>
+            <tr class="row">
+                <td class="col-4" id="countryinfo">CountryInfo</td>
+                <td class="col-4" id="countryinfodata">
+                    <div class="form-group">
+                    <label for="long">Longitude</label>
+                    <input type="number" id="long" class="form-control" placeholder="Enter The longitude">
+                </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input type="number" id="latitude" class="form-control" placeholder="Enter latitude">
+                </div>
+                </td>
+                <td class="col-4">
+                    <button id="infocounbtn" class="btn btn-primary">Submit</button>
+                </td>
+            </tr>
+			<tr class="row">
+				<td class="col-4" id="weatherinfo">Weather Info</td>
+				<td class="col-4" id="countryinfodata1">
+					<div class="form-group">
+						<label for="east">East</label>
+						<input type="number" class="form-control" id="east" placeholder="Enter The longitude">
+					</div>
+					<div class="form-group">
+						<label for="west">West</label>
+						<input type="number" class="form-control" id="west" placeholder="Enter latitude">
+					</div>
+					<div class="form-group">
+						<label for="north">North</label>
+						<input type="number" class="form-control" id="north" placeholder="Enter The longitude">
+					</div>
+					<div class="form-group">
+						<label for="south">South</label>
+						<input type="number" class="form-control" id="south" placeholder="Enter latitude">
+					</div>
+				</td>
+				<td class="col-4">
+					<button id="infocounbtn1" class="btn btn-primary" >Submit</button>
+				</td>
+			</tr>
+
+
+            <tr class="row">
+                <td class="col-4" id="neigh">CountryInfo</td>
+                <td class="col-4" id="neighinfo">
+                    <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input type="number" id="longitude" class="form-control" placeholder="Enter The longitude">
+                </div>
+                <div class="form-group">
+                    <label for="lati">Latitude</label>
+                    <input type="number" id="lati" class="form-control" placeholder="Enter latitude">
+                </div>
+                </td>
+                <td class="col-4">
+                    <button id="infocounbtn2" class="btn btn-primary">Submit</button>
+                </td>
+            </tr>
+
+
+
+
+
+
+            <tr class="row">
+                <td class="col-12">
+                    <div id="hidediv">
+                        <ul>
+                            <li><p>Distance: <span id="distance"></span></p></li>
+                            <li><p>Country Name: <span id="countryname"></span></p></li>
+                            <li><p>Population: <span id="countrypop"></span></p></li>
+                        </ul>
+                    </div>
+                    <div id="hidediv1">
+                        <ul>
+                            <li><p>Station Name: <span id="countcode"></span></p></li>
+                            <li><p>Weather: <span id="tempre"></span></p></li>
+                            <li><p>Date and Time: <span id="dandt"></span></p></li>
+                            <li><p>Weather Condition: <span id="weatherCondition"></span></p></li>
+                        </ul>
+                    </div>
+
+                    <div id="hidediv2">
+                        <ul>
+                            <li><p>Country Code: <span id="countrycode"></span></p></li>
+                            <li><p>Country Name: <span id="countname"></span></p></li>
+                            <li><p>City: <span id="city"></span></p></li>
+                           
+                        </ul>
+                    </div>
+
+                    <p id="error" style="display: none;">Invalid Info Please try again</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="preloader"></div>
+    <script src="libs/js/jquery-2.2.3.min.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="/libs/js/script.js"></script>
+</body>
+</html>

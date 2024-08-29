@@ -1,0 +1,150 @@
+html,
+body {
+  background-color: #f9f6ee;
+  margin: 5px 0px 5px 2px;
+  padding: 5px 0px 5px 2px;
+  overflow: hidden;
+}
+
+section {
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 20px);
+}
+
+.tab-content {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+tr {
+  cursor: default;
+}
+
+.myBtn {
+  width: 70px;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s ease infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -18px;
+  margin-left: -18px;
+  display: none; /* Hide by default */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Container for the loading animation */
+.loading-container {
+  position: relative;
+  height: 100px; /* Adjust based on your layout */
+  text-align: center;
+}
+
+
+.wrapper{
+  display: hidden;
+}
+.checkmark__circle{
+
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+}
+.checkmark{
+
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both 
+}
+.checkmark__check{
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+}
+@keyframes stroke{
+  100%{stroke-dashoffset: 0}
+}
+@keyframes scale{
+  0%, 100%{transform: none}
+  50%{transform: scale3d(1.1, 1.1, 1)
+  }
+}@keyframes fill{
+  100%{box-shadow: inset 0px 0px 0px 30px #7ac142}
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #fff;
+  }
+  #preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #f2f2f2;
+  border-top: 6px solid #56829e ;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+animation: animate-preloader 1s linear infinite;
+}
+@-webkit-keyframes animate-preloader {
+0% {
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+@keyframes animate-preloader {
+0% {
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+
+#nonedata{
+  display: none;
+  color: red;
+  font-size: large;
+  font-weight: bolder;
+}

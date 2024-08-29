@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gazetteer</title>
+    <meta name="author" content="Christ Rimmon Flavin Sesurajan">
+    <meta name="description" content="map">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+</head>
+<body>
+    <span id="selectContainer">
+        <select id="countrySelect" class="form-select shadow-sm w-10 h-25">
+         
+          <option id="op" value="AF">Afghanistan</option>
+        </select>
+      </span>
+      
+      <div id="map"></div>
+      
+      
+      <div id="exampleModal1" class="modal" data-bs-backdrop="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-info bg-gradient text-white">
+                    <h5 class="modal-title">Overview</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="countryinfo1"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        
+                        <tr>
+      
+                          <td class="text-center">
+                            <i class="fa-solid fa-globe fa-xl text-info"></i>
+                          </td>
+                    
+                          <td >
+                            Continent Name
+                          </td>
+                    
+                          <td class="text-end" id="continentname">
+                            
+                          </td>
+                    
+                        </tr>
+                    
+                        <tr>
+                    
+                          <td class="text-center">
+                            <i class="fa-solid fa-flag fa-xl text-info"></i>
+                          </td>
+                    
+                          <td >
+                            Country Name
+                          </td>
+                    
+                          <td class="text-end" id="countryname">
+                            
+                          </td>
+                    
+                        </tr>
+                        <tr>
+                    
+                          <td class="text-center">
+                            <i class="fa-solid fa-users fa-xl text-info"></i>
+                          </td>
+                    
+                          <td>
+                            Population
+                          </td>
+                    
+                          <td class="text-end" id="popu">
+                           
+                          </td>
+                    
+                        </tr>
+                        <tr>
+                    
+                          <td class="text-center">
+                            <i class="fa-solid fa-codiepie fa-xl text-info"></i>
+                          </td>
+                    
+                          <td>
+                            Capital
+                          </td>
+                    
+                          <td class="text-end" id="capital">
+                           
+                          </td>
+                    
+                        </tr>
+                        <tr>
+                    
+                          <td class="text-center">
+                            <i class="fa-solid fa-language fa-xl text-info"></i>
+                          </td>
+                    
+                          <td>
+                            Languages
+                          </td>
+                    
+                          <td class="text-end" id="languages">
+                           
+                          </td>
+                    
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div id="exampleModal2" class="modal" data-bs-backdrop="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-dark bg-gradient text-white">
+                    <h5 class="modal-title">Weather Info</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="weatherinfo"></button>
+                </div>
+                <div class="modal-body" id="tablea">
+                    
+                     
+                    
+                    
+                     <table class="table mx-auto">
+                      <tr class="border-2">
+                        <td class="text-start"><p class="fs-6 " id="cname"></p></td>
+                        <td class="text-center">
+                       
+                        <img class="img-thumbnail rounded mx-auto border-0 align-top" style="width: 100px;" id="curenti" src="" alt="Icon"></img>
+                        <p class="fw-normal fs-3 " id="temp"></p>
+                        <p class="fw-normal fs-5 " id="weather">
+                        </td>
+                        <td class="text-end fs-6 " >
+                          
+                          <small> <p name="tempmax"  id="tempmax" class="fs-4"></small>
+                   
+                          </p>
+                       
+          
+                        <small><p  name="tempmin" id="tempmin" class="fontsi"></small>
+                           
+                          </p>
+                       
+                          
+                        </td>
+                        </tr>
+                    
+                        <tr id="nobod" class="border-2">
+                          <td>
+                            <p id="tday" class="text-start"></p>
+                          <img class="text-start" id="tdayicon" src="" alt="icon"></img>
+                          <p  id="daytempfo" class="fs-4"></p>
+                          <p  id="daytempminfo"></p>
+                          <p id="daydesp1"></p>
+                        </td>
+                        <td >
+                          <p id="tday1" ></p>
+                          <img class="text-center" id="tdayicon1" src="" alt="icon"></img>
+                          <p  id="daytempfo1" class="fs-4"></p>
+                          <p  id="daytempminfo1"></p>
+                          <p  id="daydesp2"></p>
+                        </td>
+                        <td >
+                          <p id="tday2" ></p>
+                          <img class="text-end" id="tdayicon2" src="" alt="icon"></img>
+                          <p  id="daytempfo2" class="fs-4" ></p>
+                          <p  id="daytempminfofo2"></p>
+                          <p  id="daydesp3"></p>
+                        </td>
+                        </tr>
+                        </table>
+                        <div >
+                   
+                        </div>
+                   
+                      
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div id="exampleModal3" class="modal" data-bs-backdrop="true" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content shadow">
+              <div class="modal-header bg-danger bg-gradient text-white">
+                  <h5 class="modal-title">Currency Info</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="currency"></button>
+              </div>
+              <div class="modal-body">
+                  <table class="table table-striped" id="changea">
+                      <!-- Table Content -->
+                       <form>
+                      <tr>
+                    
+                        <td class="text-center">
+                          <i class="fa-solid fa-money fa-xl text-danger"></i>
+                        </td>
+                  
+                        <td >
+                          Amount
+                        </td>
+                  
+                        <td class="text-end">
+                          <input type="number" id="amount" value="1"></input>
+                        </td>
+                  
+                      </tr>
+                      <tr>
+                    
+                        <td class="text-center">
+                          <i class="fa-solid fa-usd fa-xl text-danger"></i>
+                        </td>
+                  
+                        <td >
+                          From Currency
+                        </td>
+                  
+                        <td class="text-end">
+                          <select id="selcetfrom" class="form-select shadow-sm">
+                            <option value="GBP">Great Britain Pounds</option>
+                          </select>
+                        </td>
+                  
+                      </tr>
+
+                      <tr>
+                    
+                        <td class="text-center">
+                          <i class="fa-solid fa-gbp fa-xl text-danger"></i>
+                        </td>
+                  
+                        <td >
+                          To Currency
+                        </td>
+                  
+                        <td class="text-end">
+                          <select id="selcetto" class="form-select shadow-sm">
+                            <option value="GBP">Great Britain Pounds</option>
+                          </select>
+                        </td>
+                  
+                      </tr>
+
+                      <tr>
+                    
+                        <td class="text-center">
+                          <i class="fa-solid fa-gg-circle fa-xl text-danger"></i>
+                        </td>
+                  
+                        <td >
+                          Result
+                        </td>
+                  
+                        <td class="text-end">
+                          <p id="result" ></p>
+                        </td>
+                  
+                      </tr>
+                      
+                      
+                  </table>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>  
+
+
+  <div id="exampleModal4" class="modal" data-bs-backdrop="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-warning bg-gradient text-white">
+                <h5 class="modal-title">Wikipedia Info</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="wikiinfo"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" id="imagta">
+                    <!-- Table Content -->
+                    <tr>
+  
+      
+                
+                      <td class="text-center" id="imagecoun">
+                        <img src="" alt="Country" id="imageofco" >
+                        
+                      </td>
+                     
+                 
+                       <td class="text-end" ><a id="wikiurl" href="" target="_blank"><p id="despc"></p></a>
+                         
+                       </td>
+                
+                    </tr>
+                   
+              
+                
+            
+                    
+
+                    <tr>
+  
+                      
+                
+                      <td class="text-center" id="imagecoun1">
+                        <img src="" alt="Country" id="imageofco1">
+                        
+                      </td>
+                      <td class="text-end" >
+                        <a id="wikiurl1" href="" target="_blank"><p id="despc1"></p></a>
+                      </td>
+                    </tr>
+                    <tr>
+  
+                      
+                
+                      <td class="text-center" id="imagecoun2">
+                        <img src="" alt="Country" id="imageofco2">
+                        
+                      </td>
+                      <td class="text-end" >
+                        <a id="wikiurl2" href="" target="_blank"><p id="despc2"></p></a>
+                      </td>
+                    </tr>
+                    <tr>
+  
+                      
+                
+                      <td class="text-center" id="imagecoun3">
+                        <img src="" alt="Country" id="imageofco3">
+                        
+                      </td>
+                      <td class="text-end" >
+                        <a id="wikiurl3" href="" target="_blank"><p id="despc3"></p></a>
+                      </td>
+                    </tr>
+                   
+              
+                    
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="exampleModal5" class="modal" data-bs-backdrop="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content shadow">
+          <div class="modal-header bg-primary bg-gradient text-white">
+              <h5 class="modal-title">Holiday Info</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="holiday"></button>
+          </div>
+          <div class="modal-body">
+            <p id="error">Hoilday Info Not Available</p>
+              <table class="table table-striped">
+              
+                <tbody id="myTableBody">
+                  
+                 </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+    
+
+    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="libs/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <link rel="stylesheet" href="vendor/Leaflet.markercluster-1.4.1/Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="vendor/Leaflet.markercluster-1.4.1/Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="vendor/node_modules/leaflet-easybutton/src/easy-button.css">
+    <link rel="stylesheet" href="vendor/Leaflet.ExtraMarkers/coryasilva-Leaflet.ExtraMarkers-c4f5f1e/dist/css/leaflet.extra-markers.min.css" />
+    <link href="vendor/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet">
+
+    <script src="libs/js/jquery-2.2.3.min.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="leaflet/leaflet.js"></script>
+    <script src="vendor/Leaflet.markercluster-1.4.1/Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="vendor/node_modules/leaflet-easybutton/src/easy-button.js"></script>
+    <script src="vendor/Leaflet.ExtraMarkers/coryasilva-Leaflet.ExtraMarkers-c4f5f1e/dist/js/leaflet.extra-markers.min.js"></script>
+    <div id="preloader"></div>
+    <script src="libs/js/script.js"></script>
+</body>
+</html>

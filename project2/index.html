@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Company Directory</title>
+    <meta name="author" content="Christ Rimmon Flavin Sesurajan">
+    <meta name="description" content="Company Directory">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="libs/css/style.css" rel="stylesheet">
+    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet">
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest"> 
+    
+</head>
+<body>
+  <section>
+
+    <div class="appHeader">
+  
+      <div class="row">
+  
+        <div class="col">
+          <input id="searchInp" class="form-control mb-3" placeholder="search">
+        </div>
+  
+        <div class="col-6 text-end me-2">
+  
+          <div class="btn-group" role="group" aria-label="buttons">
+  
+            <button id="refreshBtn" type="button" class="btn btn-primary">
+              <i class="fa-solid fa-refresh fa-fw"></i>
+            </button>
+            <button id="filterBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createfilterModal">
+              <i class="fa-solid fa-filter fa-fw"></i>
+            </button>          
+            <button id="addBtn" type="button" class="btn btn-primary">
+              <i class="fa-solid fa-plus fa-fw"></i>
+            </button>
+  
+          </div>
+  
+        </div>
+        
+      </div>
+  
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="personnelBtn" data-bs-toggle="tab" data-bs-target="#personnel-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+              <i class="fa-solid fa-person fa-lg fa-fw"></i><span class="d-none d-sm-block">Personnel</span>
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="departmentsBtn" data-bs-toggle="tab" data-bs-target="#departments-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+              <i class="fa-solid fa-building fa-lg fa-fw"></i><span class="d-none d-sm-block">Departments</span>
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="locationsBtn" data-bs-toggle="tab" data-bs-target="#locations-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+              <i class="fa-solid fa-map-location-dot fa-lg fa-fw"></i><span class="d-none d-sm-block">Locations</span>
+            </button>
+          </li>
+  
+        </ul>
+  
+    </div>
+  
+    <div class="tab-content bg-white">
+  
+      <div class="tab-pane show active " id="personnel-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        
+        <table class="table table-hover" id="tableper">
+          <p id="nonedata" class="text-center">Sorry,No data found for this filter</p>
+          <tbody id="personnelTableBody">
+          
+            <!-- Below is an example row. Create a JS function that interogates the database and 
+            dynamically creates the HTML for the table contents. -->
+  
+            <tr>
+              <td class="align-middle text-nowrap col-sm-2">
+                Ace, Tamarra
+              </td>
+              <td class="align-middle text-nowrap d-none d-md-table-cell col-sm-1">
+                Support
+              </td>
+              <td class="align-middle text-nowrap d-none d-md-table-cell col-sm-1">
+                Munich
+              </td>
+              <td class="align-middle text-nowrap d-none d-md-table-cell col-sm-1">
+                tacem@vinaora.com
+              </td>
+              <td >
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editPersonnelModal" data-id="23">
+                  <i class="fa-solid fa-pencil fa-fw"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#deletePersonnelModal" data-id="23">
+                  <i class="fa-solid fa-trash fa-fw"></i>
+                </button>
+              </td>
+            </tr>
+            
+          </tbody>
+  
+        </table>
+        
+      </div>
+  
+      <div class="tab-pane" id="departments-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        
+        <table class="table table-hover" >
+          
+          <tbody id="departmentTableBody">
+          
+            <!-- Below is an example row. Create a JS function that interogates the database and 
+            dynamically creates the HTML for the table contents. -->
+  
+            <tr>
+              <td class="align-middle text-nowrap">
+                Human resources
+              </td>
+              <td class="align-middle text-nowrap d-none d-md-table-cell">
+                London
+              </td>
+              <td class="align-middle text-end text-nowrap">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editDepartmentModal" data-id="1">
+                  <i class="fa-solid fa-pencil fa-fw"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm deleteDepartmentBtn" data-id="1">
+                  <i class="fa-solid fa-trash fa-fw"></i>
+                </button>
+              </td>
+            </tr> 
+            
+          </tbody>
+  
+        </table>
+        
+      </div>
+  
+      <div class="tab-pane" id="locations-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+        
+        <table class="table table-hover">
+        
+          <tbody id="locationTableBody">
+            
+            <!-- Below is an example row. Create a JS function that interogates the database and 
+            dynamically creates the HTML for the table contents. -->
+  
+            <tr>
+              <td class="align-middle text-nowrap">
+                London
+              </td>
+              <td class="align-middle text-end text-nowrap">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editLocationModal" data-id="1">
+                  <i class="fa-solid fa-pencil fa-fw"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-trash fa-fw"></i>
+                </button>
+              </td>
+            </tr>
+            
+          </tbody>
+  
+        </table>
+        
+      </div>
+  
+    </div>
+    
+    <footer class="border-top text-center fw-bold">
+      
+      <p class="fw-light my-3">Company Directory version 1.0</p>
+      
+    </footer>
+  
+  </section>
+      
+  <div id="editPersonnelModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+    <!--   the last two classes centre the modal and, if the content is too long, ensures  -->
+    <!--   that the header and footer are always on display by making the body scroll -->
+    
+    <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+         
+      <div class="modal-content shadow"> 
+        
+        <div class="modal-header bg-primary bg-gradient text-white">
+          <h5 class="modal-title">Edit employee</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body ">
+            
+          <form id="editPersonnelForm">
+  
+            <input type="hidden" id="editPersonnelEmployeeID">
+  
+            <div class="form-floating mb-3" >
+              <input type="text" class="form-control" id="editPersonnelFirstName" placeholder="First name" required>
+              <label for="editPersonnelFirstName">First name</label>
+            </div>
+  
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="editPersonnelLastName" placeholder="Last name" required>
+              <label for="editPersonnelLastName">Last name</label>
+            </div>
+  
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="editPersonnelJobTitle" placeholder="Job title" required>
+              <label for="editPersonnelJobTitle">Job Title</label>
+            </div>          
+  
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="editPersonnelEmailAddress" placeholder="Email address" required>
+              <label for="editPersonnelEmailAddress">Email Address</label>
+            </div>    
+  
+            <div class="form-floating">
+              <select class="form-select" id="editPersonnelDepartment" placeholder="Department">
+              </select>
+              <label for="editPersonnelDepartment">Department</label>
+            </div>  
+            
+          </form>
+          <div id="spine">
+            <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            </div>
+          </div>
+
+  
+        </div>
+        <div class="modal-footer">
+          <button type="submit" form="editPersonnelForm" class="btn btn-outline-primary btn-sm myBtn">SAVE</button>
+          <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CANCEL</button>
+        </div>
+
+</div>
+</div>
+</div>
+
+<!-- loc MODEL -->
+
+<div id="editLocationModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Edit Location</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editLocationForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editLocation" placeholder="Location" required>
+            <label for="editLocation">Edit Location</label>
+          </div>
+        </form>
+        <div id="spine2">
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="editLocationForm" class="btn btn-outline-primary btn-sm myBtn">SAVE</button>
+        <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- dept MODEL -->
+
+<div id="editDepartmentModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Edit Department</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editDepartmentForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editDepartment" placeholder="Department" required>
+            <label for="editDepartment">Edit Department</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" id="editDeptLocation" placeholder="Location">
+            </select>
+            <label for="editLocation">Edit Location</label>
+          </div>
+        </form>
+        <div id="spine1">
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="editDepartmentForm" class="btn btn-outline-primary btn-sm myBtn">SAVE</button>
+        <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- create Person MODEL -->
+
+<div id="createPersonnelModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+  <!--   the last two classes centre the modal and, if the content is too long, ensures  -->
+  <!--   that the header and footer are always on display by making the body scroll -->
+  
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+       
+    <div class="modal-content shadow"> 
+      
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Add Employee</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+          
+        <form id="createPersonnelForm">
+          
+        
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="createPersonnelFirstName" placeholder="First name" required>
+            <label for="createPersonnelFirstName">First name</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="createPersonnelLastName" placeholder="Last name" required>
+            <label for="createPersonnelLastName">Last name</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="createPersonnelJobTitle" placeholder="Job title" required>
+            <label for="createPersonnelJobTitle">Job Title</label>
+          </div>          
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="createPersonnelEmailAddress" placeholder="Email address" required>
+            <label for="createPersonnelEmailAddress">Email Address</label>
+          </div>    
+
+          <div class="form-floating">
+            <select class="form-select" id="createPersonnelDepartment" placeholder="Department">
+            </select>
+            <label for="createPersonnelDepartment">Department</label>
+          </div>  
+          
+          
+        </form>
+        <div id="spine3">
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="createPersonnelForm" class="btn btn-outline-primary btn-sm myBtn">SAVE</button>
+        <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CANCEL</button>
+      </div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<!-- create Person MODEL End-->
+
+
+<!-- create dept MODEL -->
+
+<div id="createDepartmentModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Create Department</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="createDepartmentForm">
+
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="createDepartment" placeholder="Department" required>
+            <label for="createDepartment">Department</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" id="deptiDeptLocation" placeholder="Location">
+            </select>
+            <label for="deptiDeptLocation">Location</label>
+          </div>
+        </form>
+        <div id="spine4">
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="createDepartmentForm" class="btn btn-outline-primary btn-sm myBtn">SAVE</button>
+        <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- create dept MODEL End-->
+
+
+<!-- create  Location MODEL -->
+<div id="createLocationModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Add Location</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="createLocationForm">
+          
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="createLocation" placeholder="Location" required>
+            <label for="createLocation">Location</label>
+          </div>
+        </form>
+        <div id="spine5">
+          <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="sub" form="createLocationForm" class="btn btn-outline-primary btn-sm myBtn">SAVE</button>
+        <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- create  Location MODEL End-->
+
+<!-- create filter methode-->
+
+<div id="createfilterModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Create Filter</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="error"></p>
+        
+        <form id="createfilterForm" class="m-3">
+         
+          <div class="form-floating">
+           
+            <select class="form-select" id="filterDepartment" placeholder="Department">
+            </select>
+            <label for="filterDepartment">Department</label>
+          </div>
+          
+      
+          <div class="form-floating">
+          
+            <select class="form-select" id="filterLocation" placeholder="Location">
+            </select>
+            <label for="filterLocation">Location</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- create filter methode End-->
+
+<!-- delete method-->
+
+
+<div id="deleteModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Delete</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="deleteForm">
+       <P id="message">Are you sure you want to delete this record?</P>
+       <p id="deleerror">This record has dependencies and cannot be deleted.</p>
+      </form>
+      <div id="spine6">
+        <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="confirmDelete" form="deleteForm" class="btn btn-outline-primary btn-sm myBtn">YES</button>
+        <button  type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">NO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- deletemethode End-->
+
+<!-- delete dept method-->
+<div id="deletdeptModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Delete</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="deletdeptForm">
+       <P id="message1">Are you sure you want to delete this record?</P>
+       <p id="deleerror1">This record has dependencies and cannot be deleted.</p>
+      </form>
+      <div id="spine7">
+        <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="deptconfirmDelete" form="deletdeptForm" class="btn btn-outline-primary btn-sm myBtn">YES</button>
+        <button id="nobtn1" type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">NO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- deletemethode dept End-->
+
+
+
+
+<!-- delete location method-->
+
+
+<div id="deletlocoModal" class="modal fade" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title">Delete</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="deletlocoForm">
+       <P id="message2">Are you sure you want to delete this record?</P>
+       <p id="deleerror2">This record has dependencies and cannot be deleted.</p>
+      </form>
+      <div id="spine8">
+        <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="lococonfirmDelete" form="deletlocoForm" class="btn btn-outline-primary btn-sm myBtn">YES</button>
+        <button id="nobtn" type="button" class="btn btn-outline-primary btn-sm myBtn" data-bs-dismiss="modal">NO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- deletemethode location End-->
+
+  <div class="loading-container">
+    <div class="spinner" id="loadingSpinner"></div>
+  </div>  
+
+    
+
+   
+    <div id="preloader"></div>
+    <script src="libs/js/jquery-2.2.3.min.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="libs/js/script.js"></script>
+</body>
+</html>
